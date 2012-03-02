@@ -8,7 +8,7 @@ from trie import Trie
 """
 def assign(t, k, v):
 	print "Assigning %s => t[%s]" % (v, k)
-	t[k]=v
+	t[k] = v
 
 def dump(t):
 	print "Dumping trie:"

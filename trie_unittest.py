@@ -8,7 +8,7 @@ class TestTrie(unittest.TestCase):
 		self.trie = Trie()
 	
 	def test_basicAssignment(self):
-		self.trie["Foo"]=True
+		self.trie["Foo"] = True
 		self.assertTrue(self.trie["Foo"])
 		self.assertEqual(None, self.trie["Food"])
 		self.assertEquals(1, len(self.trie))
@@ -16,7 +16,7 @@ class TestTrie(unittest.TestCase):
 		self.assertTrue("Foo" in self.trie)
 
 	def test_basicRemoval(self):
-		self.trie["Foo"]=True
+		self.trie["Foo"] = True
 		self.assertTrue(self.trie["Foo"])
 		del self.trie["Foo"]
 		self.assertEqual(None, self.trie["Foo"])
@@ -25,8 +25,8 @@ class TestTrie(unittest.TestCase):
 		self.assertFalse("Foo" in self.trie)
 
 	def test_MixedTypes(self):
-		self.trie["Foo"]=True
-		self.trie[[1,2,3]]=True
+		self.trie["Foo"] = True
+		self.trie[[1,2,3]] = True
 		self.assertTrue(self.trie["Foo"])
 		self.assertTrue(self.trie[[1,2,3]])
 		self.assertTrue([1,2,3] in self.trie)
@@ -35,17 +35,17 @@ class TestTrie(unittest.TestCase):
 		self.assertFalse([1,2,3] in self.trie)
 
 	def test_Iteration(self):
-		self.trie["Foo"]=True
-		self.trie["Bar"]=True
-		self.trie["Grok"]=True
+		self.trie["Foo"] = True
+		self.trie["Bar"] = True
+		self.trie["Grok"] = True
 		for k in self.trie:
 			self.assertTrue(k in self.trie)
 			self.assertTrue(self.trie[k])
 
 	def test_Addition(self):
-		self.trie["Foo"]=True
+		self.trie["Foo"] = True
 		t2 = Trie()
-		t2["Food"]=True
+		t2["Food"] = True
 		t3 = t2 + self.trie
 		self.assertTrue("Foo" in self.trie)
 		self.assertFalse("Food" in self.trie)
@@ -55,10 +55,10 @@ class TestTrie(unittest.TestCase):
 		self.assertTrue("Food" in t3)
 		
 	def test_Subtraction(self):
-		self.trie["Food"]=True
-		self.trie["Foo"]=True
+		self.trie["Food"] = True
+		self.trie["Foo"] = True
 		t2 = Trie()
-		t2["Food"]=True
+		t2["Food"] = True
 		t3 = self.trie - t2
 		t4 = t2 - self.trie
 		self.assertTrue("Food" in self.trie)
@@ -77,7 +77,7 @@ class TestTrie(unittest.TestCase):
 		self.assertFalse("Food" in self.trie)
 		self.assertTrue("Food" in t2)
 		self.assertFalse("Foo" in t2)
-		self.trie+=t2
+		self.trie += t2
 		self.assertTrue("Foo" in self.trie)
 		self.assertTrue("Food" in self.trie)
 
@@ -89,7 +89,7 @@ class TestTrie(unittest.TestCase):
 		self.assertTrue("Food" in self.trie)
 		self.assertTrue("Foo" in self.trie)
 		self.assertTrue("Food" in t2)
-		self.trie-=t2
+		self.trie -= t2
 		self.assertFalse("Food" in self.trie)
 		self.assertTrue("Foo" in self.trie)
 		self.assertTrue("Food" in t2)

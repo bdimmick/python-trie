@@ -1,9 +1,11 @@
+
+
 class Trie:
-	
+
 	def __init__(self):
-		self.path={}
-		self.value=None
-	
+		self.path = {}
+		self.value = None
+
 	def __setitem__(self, key, value):
 		head = key[0]
 		if self.path.has_key(head):
@@ -87,14 +89,14 @@ class Trie:
 
 	def __add__(self, other):
 		result = Trie()
-		result+=self
-		result+=other
+		result += self
+		result += other
 		return result
 	
 	def __sub__(self, other):
 		result = Trie()
-		result+=self
-		result-=other
+		result += self
+		result -= other
 		return result
 
 	def __iadd__(self, other):
