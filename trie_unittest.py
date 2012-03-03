@@ -3,6 +3,7 @@
 import unittest
 from trie import Trie
 
+
 class TestTrie(unittest.TestCase):
     def setUp(self):
         self.trie = Trie()
@@ -26,13 +27,13 @@ class TestTrie(unittest.TestCase):
 
     def test_MixedTypes(self):
         self.trie["Foo"] = True
-        self.trie[[1,2,3]] = True
+        self.trie[[1, 2, 3]] = True
         self.assertTrue(self.trie["Foo"])
-        self.assertTrue(self.trie[[1,2,3]])
-        self.assertTrue([1,2,3] in self.trie)
+        self.assertTrue(self.trie[[1, 2, 3]])
+        self.assertTrue([1, 2, 3] in self.trie)
         self.assertTrue("Foo" in self.trie)
-        del self.trie[[1,2,3]]
-        self.assertFalse([1,2,3] in self.trie)
+        del self.trie[[1, 2, 3]]
+        self.assertFalse([1, 2, 3] in self.trie)
 
     def test_Iteration(self):
         self.trie["Foo"] = True

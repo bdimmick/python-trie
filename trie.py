@@ -8,7 +8,7 @@ class Trie:
 
     def __setitem__(self, key, value):
         head = key[0]
-        if self.path.has_key(head):
+        if head in self.path:
             node = self.path[head]
         else:
             node = Trie()
@@ -22,7 +22,7 @@ class Trie:
 
     def __delitem__(self, key):
         head = key[0]
-        if self.path.has_key(head):
+        if head in self.path:
             node = self.path[head]
             if len(key) > 1:
                 remains = key[1:]
@@ -34,7 +34,7 @@ class Trie:
 
     def __getitem__(self, key):
         head = key[0]
-        if self.path.has_key(head):
+        if head in self.path:
             node = self.path[head]
         else:
             return None
@@ -45,7 +45,7 @@ class Trie:
             return node.value
 
     def __contains__(self, key):
-        return not self.__getitem__(key)==None
+        return not self.__getitem__(key) == None
 
     def __len__(self):
         n = (self.value and 1) or 0
@@ -65,11 +65,11 @@ class Trie:
             isStr = True
             val = ""
             for k in prefix:
-                if type(k)!=str or len(k)>2:
+                if type(k) != str or len(k) > 2:
                     isStr = False
                     break
                 else:
-                    val+=k
+                    val += k
             if isStr:
                 result.append(val)
             else:
@@ -86,7 +86,6 @@ class Trie:
             yield k
         raise StopIteration
 
-
     def __add__(self, other):
         result = Trie()
         result += self
@@ -101,11 +100,10 @@ class Trie:
 
     def __iadd__(self, other):
         for k in other:
-            self[k]=other[k]
+            self[k] = other[k]
         return self
 
     def __isub__(self, other):
         for k in other:
             del self[k]
         return self
-

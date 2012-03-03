@@ -2,13 +2,16 @@
 
 from trie import Trie
 
-""" Here's a couple of helper methods to print on assigment and dump the trie.
-    You don't need in practice and can just treat the Trie as any other dict-like
-    structure.
+""" Here's a couple of helper methods to print on assigment and dump the
+    trie. You don't need in practice and can just treat the Trie as any
+    other dict-like structure.
 """
+
+
 def assign(t, k, v):
     print "Assigning %s => t[%s]" % (v, k)
     t[k] = v
+
 
 def dump(t):
     print "Dumping trie:"
@@ -26,14 +29,14 @@ dump(t)
 
 print "\nUsing lists as keys and bool values..."
 t = Trie()
-assign(t, [1,2], True)
-assign(t, [2,3], False)
+assign(t, [1, 2], True)
+assign(t, [2, 3], False)
 dump(t)
 
 print "\nUsing mixed types as keys and values..."
 t = Trie()
-assign(t, [1,2], 'Hello?')
+assign(t, [1, 2], 'Hello?')
 assign(t, 'World', 'Earth')
 assign(t, 'Planet Number', 3)
-assign(t, (2,1), 'X')
+assign(t, (2, 1), 'X')
 dump(t)
