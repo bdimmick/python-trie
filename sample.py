@@ -4,16 +4,16 @@ from trie import Trie
 
 """ Here's a couple of helper methods to print on assigment and dump the trie.
     You don't need in practice and can just treat the Trie as any other dict-like
-	structure.
+    structure.
 """
 def assign(t, k, v):
-	print "Assigning %s => t[%s]" % (v, k)
-	t[k] = v
+    print "Assigning %s => t[%s]" % (v, k)
+    t[k] = v
 
 def dump(t):
-	print "Dumping trie:"
-	for k in t.keys():
-		print "  t[%s] => %s" % (k, t[k])
+    print "Dumping trie:"
+    for k in t.keys():
+        print "  t[%s] => %s" % (k, t[k])
 
 
 """  Real Samples Start Here """
