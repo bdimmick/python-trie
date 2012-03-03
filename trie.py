@@ -5,6 +5,7 @@ class Trie:
     def __init__(self):
         self.path = {}
         self.value = None
+        self.value_valid = False
 
     def __setitem__(self, key, value):
         head = key[0]
@@ -19,6 +20,7 @@ class Trie:
             node.__setitem__(remains, value)
         else:
             node.value = value
+            node.value_valid = True
 
     def __delitem__(self, key):
         head = key[0]
@@ -28,6 +30,7 @@ class Trie:
                 remains = key[1:]
                 node.__delitem__(remains)
             else:
+                node.value_valid = False
                 node.value = None
             if len(node) == 0:
                 del self.path[head]
@@ -37,21 +40,36 @@ class Trie:
         if head in self.path:
             node = self.path[head]
         else:
-            return None
+            raise KeyError(key)
         if len(key) > 1:
             remains = key[1:]
-            return node.__getitem__(remains)
-        else:
+            try:
+                return node.__getitem__(remains)
+            except KeyError:
+                raise KeyError(key)
+        elif node.value_valid:
             return node.value
+        else:
+            raise KeyError(key)
 
     def __contains__(self, key):
-        return not self.__getitem__(key) == None
+        try:
+            self.__getitem__(key)
+        except KeyError:
+            return False
+        return True
 
     def __len__(self):
-        n = (self.value and 1) or 0
+        n = 1 if self.value_valid else 0
         for k in self.path.iterkeys():
             n = n + len(self.path[k])
         return n
+
+    def get(self, key, default=None):
+        try:
+            return self.__getitem__(key)
+        except KeyError:
+            return default
 
     def nodeCount(self):
         n = 0
@@ -61,7 +79,7 @@ class Trie:
 
     def keys(self, prefix=[]):
         result = []
-        if self.value != None:
+        if self.value_valid:
             isStr = True
             val = ""
             for k in prefix:
