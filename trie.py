@@ -61,7 +61,7 @@ class Trie:
 
     def __len__(self):
         n = 1 if self.value_valid else 0
-        for k in self.path.iterkeys():
+        for k in self.path.keys():
             n = n + len(self.path[k])
         return n
 
@@ -73,7 +73,7 @@ class Trie:
 
     def nodeCount(self):
         n = 0
-        for k in self.path.iterkeys():
+        for k in self.path.keys():
             n = n + 1 + self.path[k].nodeCount()
         return n
 
@@ -92,7 +92,7 @@ class Trie:
                 result.append(val)
             else:
                 result.append(prefix)
-        for k in self.path.iterkeys():
+        for k in self.path.keys():
             next = []
             next.extend(prefix)
             next.append(k)
