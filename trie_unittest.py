@@ -1,7 +1,7 @@
 #!/usr/bin/python -B
 
 import unittest
-from rhome.datastructures.trie import Trie
+from trie import Trie
 
 
 class TestTrie(unittest.TestCase):
