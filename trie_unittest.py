@@ -1,7 +1,7 @@
 #!/usr/bin/python -B
 
 import unittest
-from trie import Trie
+from rhome.datastructures.trie import Trie
 
 
 class TestTrie(unittest.TestCase):
@@ -108,6 +108,23 @@ class TestTrie(unittest.TestCase):
         self.assertEquals("Bar", self.trie.get("Food", default="Bar"))
         self.assertTrue(self.trie.get("Foo"))
         self.assertTrue(self.trie.get("Food") is None)
+
+    def test_get_prefix(self):
+        self.trie["123"] = 1
+        self.trie["123456"] = 2
+        self.trie["123457"] = 3
+        self.trie["1234578"] = 4
+        self.assertEquals(None, self.trie.get_prefix("7"))
+        self.assertEquals(None, self.trie.get_prefix("1"))
+        self.assertEquals(None, self.trie.get_prefix("12"))
+        self.assertEquals(1, self.trie.get_prefix("123"))
+        self.assertEquals(1, self.trie.get_prefix("1234"))
+        self.assertEquals(1, self.trie.get_prefix("12345"))
+        self.assertEquals(2, self.trie.get_prefix("123456"))
+        self.assertEquals(3, self.trie.get_prefix("123457"))
+        self.assertEquals(4, self.trie.get_prefix("1234578"))
+        self.assertEquals(4, self.trie.get_prefix("12345789"))
+        self.assertEquals(4, self.trie.get_prefix("12345789999"))
 
 if __name__ == '__main__':
         unittest.main()
