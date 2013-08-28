@@ -52,6 +52,24 @@ class Trie:
         else:
             raise KeyError(key)
 
+    def get_prefix(self, key):
+        head = key[0]
+        if head not in self.path:
+            return None
+
+        node = self.path[head]
+
+        if len(key) > 1:
+            remains = key[1:]
+            refined_value = node.get_prefix(remains)
+            if refined_value:
+                return refined_value
+
+        if node.value_valid:
+            return node.value
+        else:
+            return None
+
     def __contains__(self, key):
         try:
             self.__getitem__(key)
