@@ -94,21 +94,21 @@ class Trie:
             if isStr:
                 result.append(val)
             else:
-                result.append(prefix)                
+                result.append(prefix)
         if len(prefix) > 0:
             head = prefix[0]
             prefix = prefix[1:]
             if head in self.path:
-                next = []
-                next.extend(seen)
-                next.append(head)
-                result.extend(self.path[head].__keys__(prefix, next))                
+                nextpaths = [head]
+            else:
+                nextpaths = []
         else:
-            for k in self.path.keys():
-                next = []
-                next.extend(seen)
-                next.append(k)
-                result.extend(self.path[k].__keys__(prefix, next))
+            nextpaths = self.path.keys()                
+        for k in nextpaths:
+            nextseen = []
+            nextseen.extend(seen)
+            nextseen.append(k)
+            result.extend(self.path[k].__keys__(prefix, nextseen))
         return result
 
     def __iter__(self):
