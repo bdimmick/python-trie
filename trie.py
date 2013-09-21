@@ -78,11 +78,14 @@ class Trie:
         return n
 
     def keys(self, prefix=[]):
+        return self.__keys__(prefix)
+
+    def __keys__(self, prefix=[], seen=[]):
         result = []
         if self.value_valid:
             isStr = True
             val = ""
-            for k in prefix:
+            for k in seen:
                 if type(k) != str or len(k) > 2:
                     isStr = False
                     break
@@ -91,12 +94,21 @@ class Trie:
             if isStr:
                 result.append(val)
             else:
-                result.append(prefix)
-        for k in self.path.keys():
-            next = []
-            next.extend(prefix)
-            next.append(k)
-            result.extend(self.path[k].keys(next))
+                result.append(prefix)                
+        if len(prefix) > 0:
+            head = prefix[0]
+            prefix = prefix[1:]
+            if head in self.path:
+                next = []
+                next.extend(seen)
+                next.append(head)
+                result.extend(self.path[head].__keys__(prefix, next))                
+        else:
+            for k in self.path.keys():
+                next = []
+                next.extend(seen)
+                next.append(k)
+                result.extend(self.path[k].__keys__(prefix, next))
         return result
 
     def __iter__(self):

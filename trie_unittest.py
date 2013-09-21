@@ -109,5 +109,19 @@ class TestTrie(unittest.TestCase):
         self.assertTrue(self.trie.get("Foo"))
         self.assertTrue(self.trie.get("Food") is None)
 
+    def test_KeysByPrefix(self):
+        self.trie["Foo"] = True
+        self.trie["Food"] = True
+        self.trie["Eggs"] = True
+        kset = self.trie.keys()
+        self.assertTrue("Foo" in kset)
+        self.assertTrue("Food" in kset)
+        self.assertTrue("Eggs" in kset)        
+        kset = self.trie.keys("Foo")        
+        self.assertTrue("Foo" in kset)
+        self.assertTrue("Food" in kset)
+        kset = self.trie.keys("Ox")
+        self.assertEquals(0, len(kset))
+
 if __name__ == '__main__':
         unittest.main()
