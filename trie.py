@@ -1,7 +1,6 @@
 
 
-class Trie:
-
+class Trie(object):
     def __init__(self):
         self.path = {}
         self.value = None
@@ -86,7 +85,7 @@ class Trie:
             isStr = True
             val = ""
             for k in seen:
-                if type(k) != str or len(k) > 2:
+                if k is not str or len(k) > 2:
                     isStr = False
                     break
                 else:
@@ -103,7 +102,7 @@ class Trie:
             else:
                 nextpaths = []
         else:
-            nextpaths = self.path.keys()                
+            nextpaths = self.path.keys()
         for k in nextpaths:
             nextseen = []
             nextseen.extend(seen)
